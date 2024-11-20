@@ -1,9 +1,14 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import FormPreview from "./components/FormPreview";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test("renders form title and description", () => {
+  const schema = JSON.stringify({
+    formTitle: "Test Form",
+    formDescription: "This is a test form",
+    fields: [],
+  });
+
+  render(<FormPreview schema={schema} />);
+  expect(screen.getByText("Test Form")).toBeInTheDocument();
+  expect(screen.getByText("This is a test form")).toBeInTheDocument();
 });
